@@ -24,10 +24,10 @@ public class RedisClusterClientReddison implements RedisClusterClient_ {
 		this.client = Redisson.create(config);
 	}
 
-	public RedisClusterClientReddison(List<String> redisServerList, int timeout, int poolNum){
+	public RedisClusterClientReddison(List<String> redisServerList, int timeoutMillis, int poolNum){
 		Config config = new Config();
 		config.useClusterServers()
-				.setTimeout(timeout)
+				.setTimeout(timeoutMillis)
 				.setMasterConnectionPoolSize(poolNum)
 				.setScanInterval(2000) // sets cluster state scan interval
 				.addNodeAddress(redisServerList.toArray(new String[redisServerList.size()]));

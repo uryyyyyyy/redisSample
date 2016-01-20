@@ -14,7 +14,10 @@ public class MainLettuce {
 		RedisURI uri1 = RedisURI.Builder.redis("172.17.0.3").withPort(7000).build();
 		RedisURI uri2 = RedisURI.Builder.redis("172.17.0.4").withPort(7000).build();
 		List<RedisURI> redisUri = Arrays.asList(uri1, uri2);
-		RedisClusterClient_ client = new RedisClusterClientLettuce(redisUri);
+
+		RedisClusterClientLettuce client2 = new RedisClusterClientLettuce(redisUri);
+		RedisClusterClient_ client = client2;
+
 		try {
 			client.set(1, "key", "value");
 			client.set(1, "key2", "value2");
@@ -27,6 +30,12 @@ public class MainLettuce {
 			System.out.println(client.get(1, "key3"));
 			sleep(1000);
 			System.out.println(client.get(1, "key3"));
+
+
+			client2.setAsync(1, "hei", "value");
+			client2.setAsync(1, "hei2", "value");
+			System.out.println(client2.get(1, "hei"));
+			System.out.println(client2.getMulti(1, new String[]{"hei", "hei2"}));
 		}catch (IOException e){
 			e.printStackTrace();
 		}finally {

@@ -2,6 +2,7 @@ package com.github.uryyyyyyy.redis.client.java.jedis;
 
 import com.github.uryyyyyyy.redis.client.java.spec.RedisClusterClient_;
 import com.github.uryyyyyyy.redis.client.java.spec.RedisKeyUtil;
+import com.lambdaworks.redis.RedisConnectionPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
@@ -20,11 +21,11 @@ public class RedisClusterClientJedis implements RedisClusterClient_ {
 		this.jc = new JedisCluster(jedisClusterNodes, new GenericObjectPoolConfig());
 	}
 
-	public RedisClusterClientJedis(Set<HostAndPort> jedisClusterNodes, int timeout, int poolNum){
+	public RedisClusterClientJedis(Set<HostAndPort> jedisClusterNodes, int timeoutMillis, int poolNum){
 		GenericObjectPoolConfig config = new GenericObjectPoolConfig();
 		config.setMaxTotal(poolNum);
 		config.setMaxIdle(poolNum);
-		this.jc = new JedisCluster(jedisClusterNodes, timeout, config);
+		this.jc = new JedisCluster(jedisClusterNodes, timeoutMillis, config);
 	}
 
 	@Override
