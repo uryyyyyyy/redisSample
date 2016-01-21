@@ -1,4 +1,4 @@
-package com.github.uryyyyyyy.redis.client.java;
+package com.github.uryyyyyyy.redis.client.java.exec.simple;
 
 import com.github.uryyyyyyy.redis.client.java.reddison.RedisClusterClientReddison;
 import com.github.uryyyyyyy.redis.client.java.spec.RedisClusterClient_;
