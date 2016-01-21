@@ -18,7 +18,7 @@ public class FailoverLettuce {
 
 		try {
 			for(int i = 0; i< 10000; i++){
-				retryMode(client2, i, 10);
+				retryMode(client2, i, 10, 1000);
 //				exceptionMode(client2, i);
 				sleep(50);
 			}
@@ -32,12 +32,16 @@ public class FailoverLettuce {
 
 	/**
 	 * when command timeout (by master down/network trouble),
-	 * retry
+	 * retry the connection.
+	 * (WARNING: it related to `refreshClusterView` time cycle.)
+	 *
+	 * retryTime -> how many times you want to retry.
+	 * sleepMillis -> when timeout, how long time you want to wait until next retry start.
 	 */
-	private static void retryMode(RedisClusterClientLettuce client2, int i, int retry) throws IOException {
+	private static void retryMode(RedisClusterClientLettuce client2, int i, int retryTime, int sleepMillis) throws IOException {
 		String is = i + "";
-		client2.setWithRetry(i, is, i + " value", retry, 1000);
-		System.out.println(client2.getWithRetry(i, is, retry, 1000));
+		client2.setWithRetry(i, is, i + " value", retryTime, sleepMillis);
+		System.out.println(client2.getWithRetry(i, is, retryTime, sleepMillis));
 	}
 
 	/**
