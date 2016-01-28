@@ -1,6 +1,6 @@
 package com.github.uryyyyyyy.redis.client.java.exec.failover;
 
-import com.github.uryyyyyyy.redis.client.java.lettuce.RedisClusterClientLettuce;
+import com.github.uryyyyyyy.redis.client.java.client.lettuce.RedisClusterClientLettuce;
 import com.lambdaworks.redis.RedisURI;
 
 import java.io.IOException;

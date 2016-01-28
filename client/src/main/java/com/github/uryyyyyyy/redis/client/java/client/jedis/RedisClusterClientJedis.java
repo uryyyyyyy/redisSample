@@ -1,8 +1,7 @@
-package com.github.uryyyyyyy.redis.client.java.jedis;
+package com.github.uryyyyyyy.redis.client.java.client.jedis;
 
-import com.github.uryyyyyyy.redis.client.java.spec.RedisClusterClient_;
-import com.github.uryyyyyyy.redis.client.java.spec.RedisKeyUtil;
-import com.lambdaworks.redis.RedisConnectionPool;
+import com.github.uryyyyyyy.redis.client.java.client.RedisClusterClient_;
+import com.github.uryyyyyyy.redis.client.java.client.RedisKeyUtil;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;

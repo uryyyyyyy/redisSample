@@ -1,7 +1,7 @@
 package com.github.uryyyyyyy.redis.client.java.exec.simple;
 
-import com.github.uryyyyyyy.redis.client.java.jedis.RedisClusterClientJedis;
-import com.github.uryyyyyyy.redis.client.java.spec.RedisClusterClient_;
+import com.github.uryyyyyyy.redis.client.java.client.jedis.RedisClusterClientJedis;
+import com.github.uryyyyyyy.redis.client.java.client.RedisClusterClient_;
 import redis.clients.jedis.HostAndPort;
 
 import java.io.IOException;

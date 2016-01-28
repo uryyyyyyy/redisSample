@@ -1,7 +1,7 @@
 package com.github.uryyyyyyy.redis.client.java.exec.simple;
 
-import com.github.uryyyyyyy.redis.client.java.reddison.RedisClusterClientReddison;
-import com.github.uryyyyyyy.redis.client.java.spec.RedisClusterClient_;
+import com.github.uryyyyyyy.redis.client.java.client.reddison.RedisClusterClientReddison;
+import com.github.uryyyyyyy.redis.client.java.client.RedisClusterClient_;
 
 import java.io.IOException;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.github.uryyyyyyy.redis.client.java.spec;
+package com.github.uryyyyyyy.redis.client.java.client;
 
 import java.io.IOException;
 import java.util.Map;

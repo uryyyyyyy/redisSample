@@ -1,7 +1,7 @@
-package com.github.uryyyyyyy.redis.client.java.reddison;
+package com.github.uryyyyyyy.redis.client.java.client.reddison;
 
-import com.github.uryyyyyyy.redis.client.java.spec.RedisClusterClient_;
-import com.github.uryyyyyyy.redis.client.java.spec.RedisKeyUtil;
+import com.github.uryyyyyyy.redis.client.java.client.RedisClusterClient_;
+import com.github.uryyyyyyy.redis.client.java.client.RedisKeyUtil;
 import org.redisson.Config;
 import org.redisson.Redisson;
 import org.redisson.RedissonClient;

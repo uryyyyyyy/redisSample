@@ -1,13 +1,9 @@
-package com.github.uryyyyyyy.redis.client.java.spec;
+package com.github.uryyyyyyy.redis.client.java.client;
 
 public class RedisKeyUtil {
 
 	public static String generateKey(long hash, String key){
-		return  "{hash:" + hash + "}." + key;
-	}
-
-	public static String generatehash(long hash){
-		return  "{hash:" + hash + "}";
+		return  "{" + hash + "}" + key;
 	}
 
 	public static String[] generateKeys(long hash, String[] keys){

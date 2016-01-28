@@ -1,7 +1,7 @@
 package com.github.uryyyyyyy.redis.client.java.exec.simple;
 
-import com.github.uryyyyyyy.redis.client.java.lettuce.RedisClusterClientLettuce;
-import com.github.uryyyyyyy.redis.client.java.spec.RedisClusterClient_;
+import com.github.uryyyyyyy.redis.client.java.client.lettuce.RedisClusterClientLettuce;
+import com.github.uryyyyyyy.redis.client.java.client.RedisClusterClient_;
 import com.lambdaworks.redis.RedisURI;
 
 import java.io.IOException;
