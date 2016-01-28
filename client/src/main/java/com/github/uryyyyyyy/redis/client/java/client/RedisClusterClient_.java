@@ -17,6 +17,8 @@ public interface RedisClusterClient_ {
 	 */
 	void set(long hash, String key, String value) throws IOException;
 
+	void setAsync(long hash, String key, String value) throws IOException;
+
 	/**
 	 * same as SETEX command in redis
 	 *
@@ -27,6 +29,8 @@ public interface RedisClusterClient_ {
 	 * @throws IOException
 	 */
 	void setex(long hash, String key, String value, int expireTimeSec) throws IOException;
+
+	void setexAsync(long hash, String key, String value, int expireTimeSec) throws IOException;
 
 	/**
 	 * same as DEL command in redis

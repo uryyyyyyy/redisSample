@@ -2,19 +2,17 @@ package com.github.uryyyyyyy.redis.client.java.exec.failover;
 
 import com.github.uryyyyyyy.redis.client.java.client.RedisClusterClient_;
 import com.github.uryyyyyyy.redis.client.java.client.lettuce.RedisClusterClientLettuce;
+import com.github.uryyyyyyy.redis.client.java.client.reddison.RedisClusterClientReddison;
 import com.lambdaworks.redis.RedisURI;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class FailoverLettuce {
+public class FailoverRedisson {
 
 	public static void main(String[] args) {
-		RedisURI uri1 = RedisURI.Builder.redis("172.17.0.3").withPort(7000).build();
-		RedisURI uri2 = RedisURI.Builder.redis("172.17.0.4").withPort(7000).build();
-		List<RedisURI> redisUri = Arrays.asList(uri1, uri2);
-
-		RedisClusterClient_ client = new RedisClusterClientLettuce(redisUri);
+		List<String> redisUris = Arrays.asList("172.17.0.3:7000", "172.17.0.4:7000");
+		RedisClusterClient_ client = new RedisClusterClientReddison(redisUris);
 		Util.execute(client);
 	}
 }
