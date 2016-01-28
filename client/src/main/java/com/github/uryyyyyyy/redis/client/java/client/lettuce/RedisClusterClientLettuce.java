@@ -94,11 +94,4 @@ public class RedisClusterClientLettuce implements RedisClusterClient_ {
 		return map;
 	}
 
-	private static void sleep(int mills) {
-		try {
-			Thread.sleep(mills);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
 }
