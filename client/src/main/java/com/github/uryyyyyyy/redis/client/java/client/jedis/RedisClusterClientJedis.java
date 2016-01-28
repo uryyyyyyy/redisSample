@@ -5,6 +5,9 @@ import com.github.uryyyyyyy.redis.client.java.client.RedisKeyUtil;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
+import redis.clients.jedis.exceptions.JedisClusterException;
+import redis.clients.jedis.exceptions.JedisClusterMaxRedirectionsException;
+import redis.clients.jedis.exceptions.JedisDataException;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -39,12 +42,27 @@ public class RedisClusterClientJedis implements RedisClusterClient_ {
 
 	@Override
 	public void set(long hash, String key, String value) throws IOException {
-		jc.set(RedisKeyUtil.generateKey(hash, key), value);
+		try {
+			jc.set(RedisKeyUtil.generateKey(hash, key), value);
+		}catch (JedisDataException e){
+			throw new IOException(e);
+		}
+	}
+
+	@Override
+	public void setAsync(long hash, String key, String value) throws IOException {
+//		System.out.println("not implemented, use sync");
+		set(hash, key, value);
 	}
 
 	@Override
 	public void setex(long hash, String key, String value, int expireTimeSec) throws IOException {
 		jc.setex(RedisKeyUtil.generateKey(hash, key), expireTimeSec, value);
+	}
+
+	@Override
+	public void setexAsync(long hash, String key, String value, int expireTimeSec) throws IOException {
+		throw new UnsupportedOperationException("not implemented");
 	}
 
 	@Override

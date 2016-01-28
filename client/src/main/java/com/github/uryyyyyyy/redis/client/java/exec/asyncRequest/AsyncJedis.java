@@ -1,14 +1,13 @@
-package com.github.uryyyyyyy.redis.client.java.exec.simple;
+package com.github.uryyyyyyy.redis.client.java.exec.asyncRequest;
 
-import com.github.uryyyyyyy.redis.client.java.client.jedis.RedisClusterClientJedis;
 import com.github.uryyyyyyy.redis.client.java.client.RedisClusterClient_;
+import com.github.uryyyyyyy.redis.client.java.client.jedis.RedisClusterClientJedis;
 import redis.clients.jedis.HostAndPort;
 
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class MainJedis {
+public class AsyncJedis {
 
 	public static void main(String[] args) {
 		Set<HostAndPort> jedisClusterNodes = new HashSet<>();

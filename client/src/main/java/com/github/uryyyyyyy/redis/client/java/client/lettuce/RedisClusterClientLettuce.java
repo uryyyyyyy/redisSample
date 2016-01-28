@@ -48,19 +48,14 @@ public class RedisClusterClientLettuce implements RedisClusterClient_ {
 
 	@Override
 	public void set(long hash, String key, String value) throws IOException {
-		connection.sync().set(RedisKeyUtil.generateKey(hash, key), value);
-	}
-
-	public void setWithRetry(long hash, String key, String value, int retryTime, int sleepMillis) throws IOException {
 		try {
 			connection.sync().set(RedisKeyUtil.generateKey(hash, key), value);
 		}catch(RedisException e){
-			if(retryTime == 0) throw e;
-			sleep(sleepMillis);
-			setWithRetry(hash, key, value, retryTime -1, sleepMillis);
+			throw new IOException(e);
 		}
 	}
 
+	@Override
 	public void setAsync(long hash, String key, String value) throws IOException {
 		connection.async().set(RedisKeyUtil.generateKey(hash, key), value);
 	}
@@ -70,6 +65,7 @@ public class RedisClusterClientLettuce implements RedisClusterClient_ {
 		connection.sync().setex(RedisKeyUtil.generateKey(hash, key), expireTimeSec, value);
 	}
 
+	@Override
 	public void setexAsync(long hash, String key, String value, int expireTimeSec) throws IOException {
 		connection.async().setex(RedisKeyUtil.generateKey(hash, key), expireTimeSec, value);
 	}
@@ -81,16 +77,10 @@ public class RedisClusterClientLettuce implements RedisClusterClient_ {
 
 	@Override
 	public String get(long hash, String key) throws IOException {
-		return connection.sync().get(RedisKeyUtil.generateKey(hash, key));
-	}
-
-	public String getWithRetry(long hash, String key, int retryTime, int sleepMillis) throws IOException {
 		try {
 			return connection.sync().get(RedisKeyUtil.generateKey(hash, key));
 		}catch(RedisException e){
-			if(retryTime == 0) throw e;
-			sleep(sleepMillis);
-			return getWithRetry(hash, key, retryTime -1, sleepMillis);
+			throw new IOException(e);
 		}
 	}
 
