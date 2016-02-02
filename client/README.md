@@ -21,21 +21,9 @@ it has async method.
 and connection seems thread safe..
 =>  https://github.com/mp911de/lettuce/issues/157
 
-current stable version(4.0.2) seems not support some option,
-so I used snapshot version.
 
 ### Redisson
 
-current stable version(2.2.5) don't support mget/mset in cluster mode.
-=> https://github.com/mrniko/redisson/issues/378
-
-so I used snapshot version.
-
-```
-git clone ~~~
-maven install
-set local m2 directory to build.sbt
-```
 
 ## check/test
 
