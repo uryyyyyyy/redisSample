@@ -13,9 +13,8 @@ public class MainJedis {
 	public static void main(String[] args) {
 		Set<HostAndPort> jedisClusterNodes = new HashSet<>();
 //Jedis Cluster will attempt to discover cluster nodes automatically
-		jedisClusterNodes.add(new HostAndPort("172.17.0.5", 7000));
-		jedisClusterNodes.add(new HostAndPort("172.17.0.4", 7000));
-		jedisClusterNodes.add(new HostAndPort("172.17.0.3", 7000));
+		jedisClusterNodes.add(new HostAndPort("192.168.0.1", 6380));
+		jedisClusterNodes.add(new HostAndPort("192.168.0.1", 6379));
 		RedisClusterClient_ client = new RedisClusterClientJedis(jedisClusterNodes);
 		Util.execute(client);
 	}

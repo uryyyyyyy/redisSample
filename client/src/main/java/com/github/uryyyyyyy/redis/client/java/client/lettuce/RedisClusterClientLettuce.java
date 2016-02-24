@@ -47,7 +47,7 @@ public class RedisClusterClientLettuce implements RedisClusterClient_ {
 	}
 
 	@Override
-	public void set(long hash, String key, String value) throws IOException {
+	public void set(String hash, String key, String value) throws IOException {
 		try {
 			connection.sync().set(RedisKeyUtil.generateKey(hash, key), value);
 		}catch(RedisException e){
@@ -56,27 +56,27 @@ public class RedisClusterClientLettuce implements RedisClusterClient_ {
 	}
 
 	@Override
-	public void setAsync(long hash, String key, String value) throws IOException {
+	public void setAsync(String hash, String key, String value) throws IOException {
 		connection.async().set(RedisKeyUtil.generateKey(hash, key), value);
 	}
 
 	@Override
-	public void setex(long hash, String key, String value, int expireTimeSec) throws IOException {
+	public void setex(String hash, String key, String value, int expireTimeSec) throws IOException {
 		connection.sync().setex(RedisKeyUtil.generateKey(hash, key), expireTimeSec, value);
 	}
 
 	@Override
-	public void setexAsync(long hash, String key, String value, int expireTimeSec) throws IOException {
+	public void setexAsync(String hash, String key, String value, int expireTimeSec) throws IOException {
 		connection.async().setex(RedisKeyUtil.generateKey(hash, key), expireTimeSec, value);
 	}
 
 	@Override
-	public void delete(long hash, String key) throws IOException {
+	public void delete(String hash, String key) throws IOException {
 		connection.sync().del(RedisKeyUtil.generateKey(hash, key));
 	}
 
 	@Override
-	public String get(long hash, String key) throws IOException {
+	public String get(String hash, String key) throws IOException {
 		try {
 			return connection.sync().get(RedisKeyUtil.generateKey(hash, key));
 		}catch(RedisException e){
@@ -85,7 +85,7 @@ public class RedisClusterClientLettuce implements RedisClusterClient_ {
 	}
 
 	@Override
-	public Map<String, String> getMulti(long hash, String[] keys) throws IOException {
+	public Map<String, String> getMulti(String hash, String[] keys) throws IOException {
 		List<String> values =  connection.sync().mget(RedisKeyUtil.generateKeys(hash, keys));
 		Map<String, String> map = new HashMap<>();
 		for (int i = 0; i < keys.length; i++){

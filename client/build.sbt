@@ -10,8 +10,10 @@ autoScalaLibrary := false
 
 javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
 
-resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+enablePlugins(JavaAppPackaging)
 
+javacOptions in Compile ++= Seq("-source", "1.8",  "-target", "1.8") 
+javacOptions in doc ++= Seq("-source", "1.8") 
 
 libraryDependencies ++= Seq(
 	"redis.clients" % "jedis" % "2.8.0",

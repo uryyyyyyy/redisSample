@@ -41,7 +41,7 @@ public class RedisClusterClientJedis implements RedisClusterClient_ {
 	}
 
 	@Override
-	public void set(long hash, String key, String value) throws IOException {
+	public void set(String hash, String key, String value) throws IOException {
 		try {
 			jc.set(RedisKeyUtil.generateKey(hash, key), value);
 		}catch (JedisDataException e){
@@ -50,33 +50,37 @@ public class RedisClusterClientJedis implements RedisClusterClient_ {
 	}
 
 	@Override
-	public void setAsync(long hash, String key, String value) throws IOException {
+	public void setAsync(String hash, String key, String value) throws IOException {
 //		System.out.println("not implemented, use sync");
 		set(hash, key, value);
 	}
 
 	@Override
-	public void setex(long hash, String key, String value, int expireTimeSec) throws IOException {
+	public void setex(String hash, String key, String value, int expireTimeSec) throws IOException {
 		jc.setex(RedisKeyUtil.generateKey(hash, key), expireTimeSec, value);
 	}
 
 	@Override
-	public void setexAsync(long hash, String key, String value, int expireTimeSec) throws IOException {
+	public void setexAsync(String hash, String key, String value, int expireTimeSec) throws IOException {
 		throw new UnsupportedOperationException("not implemented");
 	}
 
 	@Override
-	public void delete(long hash, String key) throws IOException {
+	public void delete(String hash, String key) throws IOException {
 		jc.del(key);
 	}
 
 	@Override
-	public String get(long hash, String key) throws IOException {
-		return jc.get(RedisKeyUtil.generateKey(hash, key));
+	public String get(String hash, String key) throws IOException {
+		try{
+			return jc.get(RedisKeyUtil.generateKey(hash, key));
+		}catch (RuntimeException e){
+			throw new IOException(e);
+		}
 	}
 
 	@Override
-	public Map<String, String> getMulti(long hash, String[] keys) throws IOException {
+	public Map<String, String> getMulti(String hash, String[] keys) throws IOException {
 		List<String> values = jc.mget(RedisKeyUtil.generateKeys(hash, keys));
 		Map<String, String> map = new HashMap<>();
 		for (int i = 0; i < keys.length; i++){

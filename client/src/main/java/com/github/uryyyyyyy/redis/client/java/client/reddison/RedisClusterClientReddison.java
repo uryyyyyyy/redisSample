@@ -43,7 +43,7 @@ public class RedisClusterClientReddison implements RedisClusterClient_ {
 	}
 
 	@Override
-	public void set(long hash, String key, String value) throws IOException {
+	public void set(String hash, String key, String value) throws IOException {
 		try {
 			RBucket<String> bucket = client.getBucket(RedisKeyUtil.generateKey(hash, key));
 			bucket.set(value);
@@ -53,31 +53,31 @@ public class RedisClusterClientReddison implements RedisClusterClient_ {
 	}
 
 	@Override
-	public void setAsync(long hash, String key, String value) throws IOException {
+	public void setAsync(String hash, String key, String value) throws IOException {
 		RBucket<String> bucket = client.getBucket(RedisKeyUtil.generateKey(hash, key));
 		bucket.setAsync(value);
 	}
 
 	@Override
-	public void setex(long hash, String key, String value, int expireTimeSec) throws IOException {
+	public void setex(String hash, String key, String value, int expireTimeSec) throws IOException {
 		RBucket<String> bucket = client.getBucket(RedisKeyUtil.generateKey(hash, key));
 		bucket.set(value, expireTimeSec, TimeUnit.SECONDS);
 	}
 
 	@Override
-	public void setexAsync(long hash, String key, String value, int expireTimeSec) throws IOException {
+	public void setexAsync(String hash, String key, String value, int expireTimeSec) throws IOException {
 		RBucket<String> bucket = client.getBucket(RedisKeyUtil.generateKey(hash, key));
 		bucket.setAsync(value, expireTimeSec, TimeUnit.SECONDS);
 	}
 
 	@Override
-	public void delete(long hash, String key) throws IOException {
+	public void delete(String hash, String key) throws IOException {
 		RBucket<String> bucket = client.getBucket(RedisKeyUtil.generateKey(hash, key));
 		bucket.delete();
 	}
 
 	@Override
-	public String get(long hash, String key) throws IOException {
+	public String get(String hash, String key) throws IOException {
 		try{
 			RBucket<String> bucket = client.getBucket(RedisKeyUtil.generateKey(hash, key));
 			return bucket.get();
@@ -87,7 +87,7 @@ public class RedisClusterClientReddison implements RedisClusterClient_ {
 	}
 
 	@Override
-	public Map<String, String> getMulti(long hash, String[] keys) throws IOException {
+	public Map<String, String> getMulti(String hash, String[] keys) throws IOException {
 		return client.loadBucketValues(RedisKeyUtil.generateKeys(hash, keys));
 	}
 }

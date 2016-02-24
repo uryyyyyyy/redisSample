@@ -32,11 +32,11 @@ public class Util {
 	 */
 	private static void retryMode(RedisClusterClient_ client2, int i, int retryTime, int sleepMillis) throws IOException {
 		String is = i + "";
-		setWithRetry(client2, i, is, i + " value", retryTime, sleepMillis);
-		System.out.println(getWithRetry(client2, i, is, retryTime, sleepMillis));
+		setWithRetry(client2, "hogeeeeeeee", is, i + " value", retryTime, sleepMillis);
+		System.out.println(getWithRetry(client2, is, is, retryTime, sleepMillis));
 	}
 
-	private static void setWithRetry(RedisClusterClient_ client2, long hash, String key, String value, int retryTime, int sleepMillis) throws IOException {
+	private static void setWithRetry(RedisClusterClient_ client2, String hash, String key, String value, int retryTime, int sleepMillis) throws IOException {
 		try {
 			client2.set(hash, key, value);
 		}catch(IOException e){
@@ -47,11 +47,12 @@ public class Util {
 		}
 	}
 
-	private static String getWithRetry(RedisClusterClient_ client2, long hash, String key, int retryTime, int sleepMillis) throws IOException {
+	private static String getWithRetry(RedisClusterClient_ client2, String hash, String key, int retryTime, int sleepMillis) throws IOException {
 		try {
 			return client2.get(hash, key);
 		}catch(IOException e){
 			if(retryTime == 0) throw e;
+			System.out.println("fail. retry #" + retryTime);
 			sleep(sleepMillis);
 			return getWithRetry(client2, hash, key, retryTime -1, sleepMillis);
 		}
@@ -63,8 +64,8 @@ public class Util {
 	 */
 	private static void exceptionMode(RedisClusterClient_ client2, int i) throws IOException {
 		String is = i + "";
-		client2.set(i, is, i + " value");
-		System.out.println(client2.get(i, is));
+		client2.set(is, is, i + " value");
+		System.out.println(client2.get(is, is));
 	}
 
 	private static void sleep(int mills) {

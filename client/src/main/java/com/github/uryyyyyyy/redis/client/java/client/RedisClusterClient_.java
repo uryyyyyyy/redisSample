@@ -15,9 +15,9 @@ public interface RedisClusterClient_ {
 	 * @param value
 	 * @throws IOException
 	 */
-	void set(long hash, String key, String value) throws IOException;
+	void set(String hash, String key, String value) throws IOException;
 
-	void setAsync(long hash, String key, String value) throws IOException;
+	void setAsync(String hash, String key, String value) throws IOException;
 
 	/**
 	 * same as SETEX command in redis
@@ -28,9 +28,9 @@ public interface RedisClusterClient_ {
 	 * @param expireTimeSec expire time(sec)
 	 * @throws IOException
 	 */
-	void setex(long hash, String key, String value, int expireTimeSec) throws IOException;
+	void setex(String hash, String key, String value, int expireTimeSec) throws IOException;
 
-	void setexAsync(long hash, String key, String value, int expireTimeSec) throws IOException;
+	void setexAsync(String hash, String key, String value, int expireTimeSec) throws IOException;
 
 	/**
 	 * same as DEL command in redis
@@ -39,7 +39,7 @@ public interface RedisClusterClient_ {
 	 * @param key
 	 * @throws IOException
 	 */
-	void delete(long hash, String key) throws IOException;
+	void delete(String hash, String key) throws IOException;
 
 	/**
 	 * same as GET command in redis
@@ -48,7 +48,7 @@ public interface RedisClusterClient_ {
 	 * @param key
 	 * @throws IOException
 	 */
-	String get(long hash, String key) throws IOException;
+	String get(String hash, String key) throws IOException;
 
 	/**
 	 * same as MGET command in redis
@@ -57,6 +57,6 @@ public interface RedisClusterClient_ {
 	 * @param keys
 	 * @throws IOException
 	 */
-	Map<String, String> getMulti(long hash, String[] keys) throws IOException;
+	Map<String, String> getMulti(String hash, String[] keys) throws IOException;
 
 }

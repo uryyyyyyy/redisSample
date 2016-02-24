@@ -10,9 +10,6 @@ public class Util {
 
 		try {
 
-			System.out.print("async: ");
-			async(client);
-
 			System.out.print("sync: ");
 			sync(client);
 		}catch (IOException e){
@@ -24,19 +21,10 @@ public class Util {
 
 	private static void sync(RedisClusterClient_ client) throws IOException {
 		long start2 = System.currentTimeMillis();
-		for(int i = 0; i< 100000; i++){
+		for(int i = 0; i< 100; i++){
 			String is = i + "";
-			client.set(i, is, is + "value");
+			client.set("hogeeeeeeee", is, is);
 		}
 		System.out.println(System.currentTimeMillis() - start2);
-	}
-
-	private static void async(RedisClusterClient_ client) throws IOException {
-		long start = System.currentTimeMillis();
-		for(int i = 0; i< 100000; i++){
-			String is = i + "";
-			client.setAsync(i, is, is + "value");
-		}
-		System.out.println(System.currentTimeMillis() - start);
 	}
 }
